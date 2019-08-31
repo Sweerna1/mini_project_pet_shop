@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+
+{% block title %}Detail{% endblock title %} 
+
+{% block content %}
+    <h2 class="p-3 mb-2 bg-info text-white">{{pet.name}}</h2>
+    <br>
+    
+    <!--<h3 class="p-3 mb-2 bg-success text-white">Description: </h3>-->
+
+    <p style="font-size:30px; font-weight:bold;">Age: {{pet.age}}</p>
+    
+    <p style="font-size:30px; font-weight:bold;">Price: {{pet.price}}KD</p>
+    <p><img src="{{pet.image.url}}" class="img-fluid" style="border: 17px solid transparent; border-color: white;"></p>
+    <br>
+    {% if request.user.is_staff %}
+       <a href="{% url 'pet-update' pet.id %}" type="button" class="btn btn-success btn btn-primary btn-lg">
+        Update</a>
+        <a href="{% url 'pet-delete' pet.id %}" type="button" class="btn btn-danger btn btn-primary btn-lg">
+        Delete</a> 
+    {% endif %}
+    
+{% endblock content %}
